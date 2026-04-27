@@ -7,24 +7,31 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: linear-gradient(135deg, #e3ecff, #f5f7fb);
+      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c') no-repeat center/cover;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      min-height: 100vh;
+      padding-top: 50px;
     }
 
     .container {
       width: 420px;
-      margin: 60px auto;
-      background: white;
+      margin: auto;
+      background: #ffffff;
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     .logo {
       text-align: center;
       margin-bottom: 15px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #4b3cff;
+    }
+
+    .logo img {
+      width: 150px;
     }
 
     h2 {
@@ -36,6 +43,7 @@
       text-align: center;
       color: gray;
       margin-bottom: 20px;
+      font-size: 14px;
     }
 
     label {
@@ -49,6 +57,10 @@
       margin: 6px 0 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
+    }
+
+    textarea {
+      height: 70px;
     }
 
     button {
@@ -70,7 +82,7 @@
     .footer {
       text-align: center;
       font-size: 12px;
-      color: gray;
+      color: #777;
       margin-top: 15px;
     }
   </style>
@@ -78,13 +90,16 @@
 
 <body>
 
+<div class="overlay">
+
 <div class="container">
 
+<!-- ✅ REAL LOGO -->
 <div class="logo">
-  RightO
+  <img src="./logo.png" alt="RightO Logo">
 </div>
 
-<h2>Job Application</h2>
+<h2>RightO Careers</h2>
 <p class="subtitle">Apply for current openings</p>
 
 <form onsubmit="submitForm(event)">
@@ -122,6 +137,8 @@
 
 <div class="footer">
   © RightO Careers | Secure Application Portal
+</div>
+
 </div>
 
 </div>

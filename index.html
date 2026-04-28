@@ -29,30 +29,15 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    .logo {
-      text-align: center;
-      margin-bottom: 15px;
-    }
+    .logo { text-align: center; }
+    .logo img { width: 140px; }
 
-    .logo img {
-      width: 140px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 5px;
-    }
+    h2 { text-align: center; }
 
     .subtitle {
       text-align: center;
       color: gray;
       margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
     }
 
     input, textarea {
@@ -63,8 +48,6 @@
       border: 1px solid #ccc;
     }
 
-    textarea { height: 70px; }
-
     button {
       width: 100%;
       padding: 12px;
@@ -72,7 +55,6 @@
       color: white;
       border: none;
       border-radius: 6px;
-      cursor: pointer;
     }
 
     .whatsapp {
@@ -83,7 +65,6 @@
     #msg {
       text-align: center;
       margin-top: 10px;
-      font-weight: bold;
     }
   </style>
 </head>
@@ -102,29 +83,13 @@
 
 <form id="jobForm">
 
-<label>Full Name *</label>
-<input type="text" id="name" required>
-
-<label>Email *</label>
-<input type="email" id="email" required>
-
-<label>Phone *</label>
-<input type="text" id="phone" required>
-
-<label>Alternate Phone</label>
-<input type="text" id="altphone">
-
-<label>Aadhaar (Optional)</label>
-<input type="text" id="aadhaar">
-
-<label>Qualification *</label>
-<input type="text" id="qualification" required>
-
-<label>Address</label>
-<textarea id="address"></textarea>
-
-<label>Upload Resume *</label>
-<input type="file" id="resume" required>
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="phone" placeholder="Phone" required>
+<input type="text" id="altphone" placeholder="Alternate Phone">
+<input type="text" id="aadhaar" placeholder="Aadhaar (Optional)">
+<input type="text" id="qualification" placeholder="Qualification" required>
+<textarea id="address" placeholder="Address"></textarea>
 
 <button type="submit">Submit Application</button>
 
@@ -143,47 +108,30 @@
 document.getElementById("jobForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const file = document.getElementById("resume").files[0];
-
-  if (!file) {
-    alert("Please upload resume");
-    return;
-  }
-
-  const reader = new FileReader();
-
-  reader.onload = function() {
-
-    const data = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      phone: document.getElementById("phone").value,
-      altphone: document.getElementById("altphone").value,
-      aadhaar: document.getElementById("aadhaar").value,
-      qualification: document.getElementById("qualification").value,
-      address: document.getElementById("address").value,
-      file: reader.result,
-      filename: file.name
-    };
-
-    document.getElementById("msg").innerHTML = "Submitting...";
-
-    fetch("https://script.google.com/macros/s/AKfycbySWF37OA9b3cU4mF7NWtHCAwG0pWS5INiKqT4b_HP4dBeSYaMGcWAo6xv7WYMsQ0Tc/exec", {
-      method: "POST",
-      body: JSON.stringify(data)
-    })
-    .then(res => res.text())
-    .then(res => {
-      document.getElementById("msg").innerHTML = res;
-      document.getElementById("jobForm").reset();
-    })
-    .catch(err => {
-      document.getElementById("msg").innerHTML = "Error ❌";
-      console.error(err);
-    });
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    altphone: document.getElementById("altphone").value,
+    aadhaar: document.getElementById("aadhaar").value,
+    qualification: document.getElementById("qualification").value,
+    address: document.getElementById("address").value
   };
 
-  reader.readAsDataURL(file);
+  document.getElementById("msg").innerHTML = "Submitting...";
+
+  fetch("https://script.google.com/macros/s/AKfycbySWF37OA9b3cU4mF7NWtHCAwG0pWS5INiKqT4b_HP4dBeSYaMGcWAo6xv7WYMsQ0Tc/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => res.text())
+  .then(res => {
+    document.getElementById("msg").innerHTML = "Application Submitted ✅";
+    document.getElementById("jobForm").reset();
+  })
+  .catch(err => {
+    document.getElementById("msg").innerHTML = "Error ❌";
+  });
 });
 </script>
 

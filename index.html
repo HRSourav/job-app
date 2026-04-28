@@ -23,7 +23,7 @@
     .container {
       width: 100%;
       max-width: 420px;
-      background: #ffffff;
+      background: white;
       padding: 25px;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -35,7 +35,7 @@
     }
 
     .logo img {
-      width: 150px;
+      width: 140px;
     }
 
     h2 {
@@ -47,7 +47,6 @@
       text-align: center;
       color: gray;
       margin-bottom: 20px;
-      font-size: 14px;
     }
 
     label {
@@ -59,7 +58,7 @@
     input, textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       border-radius: 6px;
       border: 1px solid #ccc;
     }
@@ -84,7 +83,7 @@
     .footer {
       text-align: center;
       font-size: 12px;
-      color: #777;
+      color: gray;
       margin-top: 15px;
     }
   </style>
@@ -117,13 +116,13 @@
 <label>Alternate Phone</label>
 <input type="text" id="altphone">
 
-<label>Aadhaar Number (Optional)</label>
+<label>Aadhaar (Optional)</label>
 <input type="text" id="aadhaar">
 
 <label>Qualification *</label>
 <input type="text" id="qualification" required>
 
-<label>Current Address</label>
+<label>Address</label>
 <textarea id="address"></textarea>
 
 <label>Upload Resume *</label>
@@ -133,7 +132,7 @@
 
 </form>
 
-<a href="https://wa.me/916239971732?text=Hi%20I%20applied%20for%20job" target="_blank">
+<a href="https://wa.me/916239971732" target="_blank">
   <button class="whatsapp">Chat on WhatsApp</button>
 </a>
 
@@ -151,11 +150,12 @@
 function submitForm(e) {
   e.preventDefault();
 
-  let file = document.getElementById("resume").files[0];
-  let reader = new FileReader();
+  var file = document.getElementById("resume").files[0];
+  var reader = new FileReader();
 
   reader.onload = function() {
-    let data = {
+
+    var data = {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
       phone: document.getElementById("phone").value,
@@ -167,7 +167,7 @@ function submitForm(e) {
       filename: file.name
     };
 
-    fetch("YOUR_SCRIPT_URL", {
+    fetch("PASTE_SCRIPT_URL_HERE", {
       method: "POST",
       body: JSON.stringify(data)
     })

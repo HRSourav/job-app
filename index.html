@@ -80,11 +80,10 @@
       margin-top: 10px;
     }
 
-    .footer {
+    #msg {
       text-align: center;
-      font-size: 12px;
-      color: gray;
-      margin-top: 15px;
+      margin-top: 10px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -92,7 +91,6 @@
 <body>
 
 <div class="overlay">
-
 <div class="container">
 
 <div class="logo">
@@ -102,7 +100,7 @@
 <h2>RightO Careers</h2>
 <p class="subtitle">Apply for current openings</p>
 
-<form onsubmit="submitForm(event)">
+<form id="jobForm">
 
 <label>Full Name *</label>
 <input type="text" id="name" required>
@@ -138,24 +136,25 @@
 
 <p id="msg"></p>
 
-<div class="footer">
-  © RightO Careers | Secure Application Portal
 </div>
-
-</div>
-
 </div>
 
 <script>
-function submitForm(e) {
+document.getElementById("jobForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  var file = document.getElementById("resume").files[0];
-  var reader = new FileReader();
+  const file = document.getElementById("resume").files[0];
+
+  if (!file) {
+    alert("Please upload resume");
+    return;
+  }
+
+  const reader = new FileReader();
 
   reader.onload = function() {
 
-    var data = {
+    const data = {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
       phone: document.getElementById("phone").value,
@@ -167,17 +166,25 @@ function submitForm(e) {
       filename: file.name
     };
 
-    fetch("PASTE_SCRIPT_URL_HERE", {
+    document.getElementById("msg").innerHTML = "Submitting...";
+
+    fetch("https://script.google.com/macros/library/d/179wlyxOHFMrZS8F84ofYbYKnxZ7J8Q3k38H7UupTBLo6Xv1UI8Dy4jH7/1", {
       method: "POST",
       body: JSON.stringify(data)
     })
-    .then(() => {
+    .then(res => res.text())
+    .then(res => {
       document.getElementById("msg").innerHTML = "Application Submitted ✅";
+      document.getElementById("jobForm").reset();
+    })
+    .catch(err => {
+      document.getElementById("msg").innerHTML = "Error ❌";
+      console.error(err);
     });
   };
 
   reader.readAsDataURL(file);
-}
+});
 </script>
 
 </body>

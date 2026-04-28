@@ -4,17 +4,22 @@
   <title>RightO Careers</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c') no-repeat center/cover;
+    }
 
-      /* PERFECT CENTER */
+    .overlay {
+      background: rgba(0,0,0,0.6);
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      background: url('https://images.unsplash.com/photo-1497366216548-37526070297c') no-repeat center/cover;
     }
 
     .container {
@@ -44,19 +49,22 @@
       text-align: center;
       color: gray;
       margin-bottom: 20px;
-    }
-
-    label {
-      font-weight: bold;
       font-size: 14px;
     }
 
-    input, textarea, select {
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
       width: 100%;
       padding: 10px;
-      margin: 6px 0 15px;
+      margin-bottom: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
+      display: block;
     }
 
     textarea {
@@ -71,7 +79,6 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 15px;
     }
 
     .whatsapp {
@@ -85,11 +92,12 @@
       color: #777;
       margin-top: 15px;
     }
-
   </style>
 </head>
 
 <body>
+
+<div class="overlay">
 
 <div class="container">
 
@@ -101,14 +109,6 @@
 <p class="subtitle">Apply for current openings</p>
 
 <form onsubmit="submitForm(event)">
-
-<label>Select Job Role *</label>
-<select id="job" required>
-  <option value="">-- Select Role --</option>
-  <option>BPO Executive - Mohali</option>
-  <option>Chat Support - Gurgaon</option>
-  <option>Work From Home</option>
-</select>
 
 <label>Full Name *</label>
 <input type="text" id="name" required>
@@ -135,7 +135,7 @@
 
 </form>
 
-<a href="https://wa.me/916239971732?text=Hi%20I%20applied%20for%20job" target="_blank">
+<a href="https://wa.me/919876543210?text=Hi%20I%20applied%20for%20job" target="_blank">
   <button class="whatsapp">Chat on WhatsApp</button>
 </a>
 
@@ -147,12 +147,13 @@
 
 </div>
 
+</div>
+
 <script>
 function submitForm(e) {
   e.preventDefault();
 
   let data = {
-    job: document.getElementById("job").value,
     name: document.getElementById("name").value,
     email: document.getElementById("email").value,
     phone: document.getElementById("phone").value,

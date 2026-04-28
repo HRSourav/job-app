@@ -168,7 +168,7 @@ document.getElementById("jobForm").addEventListener("submit", function(e) {
 
     document.getElementById("msg").innerHTML = "Submitting...";
 
-    fetch("https://script.google.com/macros/library/d/179wlyxOHFMrZS8F84ofYbYKnxZ7J8Q3k38H7UupTBLo6Xv1UI8Dy4jH7/1", {
+    fetch("https://script.google.com/macros/s/AKfycbx_Ji8KbkhRXBBUIIHApRhbTTys_-PW96F_JPlODv-s6gjSJRjLjcyoI3vFNZo-4tRf/exec", {
       method: "POST",
       body: JSON.stringify(data)
     })
